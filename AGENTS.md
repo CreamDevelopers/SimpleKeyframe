@@ -1,0 +1,22 @@
+# シンプルキーフレーム
+
+- ユーザーへの返答は日本語。
+- 表示名は「シンプルキーフレーム」。「なじむ」などの宣伝文句は説明やUIに入れない。
+- README・Release本文・配布ファイルの説明は機能と操作方法に限定し、確認状況・テスト結果・未確認事項・開発作業の経緯を載せない。事実確認はチャット内で報告する。
+- 技術: YMM4、.NET 10、WPF。公開文面に開発者のローカル環境名や特定の対応バージョンを記載しない。
+- SDK参照先は`YMM4DirPath`で指定する。
+- ビルド・テスト・配布物作成: `./build.ps1 -YMM4DirPath <YMM4フォルダー>`。
+- テスト: `dotnet run --project tests/KeyframeStudio.Integration -c Release -p:YMM4DirPath=<YMM4フォルダー> -- <YMM4フォルダー>`。
+- 整形確認は`YMM4DirPath`環境変数を設定し、`dotnet format KeyframeStudio.sln --verify-no-changes --no-restore`を実行する。
+- 起動の可否は`NativeCompatibility`で必要なAPIを確認して判断し、バージョン番号で制限しない。
+- 実装: `src/KeyframeStudio.Plugin/Native/`。本体の`IItem.KeyFrames`と`Animation`を使用する。
+- 旧方式のエフェクト・エディター・データモデルは削除済み。再導入しない。
+- 内部アセンブリ名と型名は既存の設定・ツールの保存に合わせて維持する。
+- バージョン依存の内部アクセスは`NativeHostContext`と`NativeRuntime`で隔離する。
+- 現在キー編集はLib.Harmony 2.4.3でSDKの加算・乗算に接続する。`0Harmony.dll`とライセンスを同梱する。
+- 数値欄は`NativeValueEditor`。標準TextBoxSliderと標準Undoトランザクションを使う。
+- テストではYMM4を起動せず、実`VisualItem`基底モデルで操作・保存・分割・Undoを検証する。
+- `.dev`と`.references`は開発用、`dist`は配布物。YMM4本体DLLを配布しない。
+- 実機テストはユーザーが行うため、画面操作は依頼されるまで行わない。
+- 未検証の画面操作・動画出力を確認済みと報告しない。
+- コミット・プッシュはユーザーに依頼された場合のみ。

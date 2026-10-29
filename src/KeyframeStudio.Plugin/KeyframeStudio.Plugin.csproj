@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <AssemblyName>KeyframeStudio</AssemblyName>
+    <Title>シンプルキーフレーム</Title>
+    <Product>シンプルキーフレーム</Product>
+    <Version>2.1.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="2.4.3" />
+    <Reference Include="YukkuriMovieMaker.Plugin"><HintPath>$(YMM4DirPath)\YukkuriMovieMaker.Plugin.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="YukkuriMovieMaker.Controls"><HintPath>$(YMM4DirPath)\YukkuriMovieMaker.Controls.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="YukkuriMovieMaker"><HintPath>$(YMM4DirPath)\YukkuriMovieMaker.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Vortice.Direct2D1"><HintPath>$(YMM4DirPath)\Vortice.Direct2D1.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Vortice.Mathematics"><HintPath>$(YMM4DirPath)\Vortice.Mathematics.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Vortice.DirectX"><HintPath>$(YMM4DirPath)\Vortice.DirectX.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SharpGen.Runtime"><HintPath>$(YMM4DirPath)\SharpGen.Runtime.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+  <Target Name="CheckSdk" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(YMM4DirPath)\YukkuriMovieMaker.Plugin.dll')" Text="YMM4 SDKがありません。-p:YMM4DirPath=YMM4のフォルダー を指定してください。" />
+  </Target>
+</Project>

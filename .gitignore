@@ -1,0 +1,11 @@
+.dev/
+.references/
+**/bin/
+**/obj/
+*.user
+.vs/
+dist/
+Directory.Build.props.local
+.env
+.env.*
+!.env.example
